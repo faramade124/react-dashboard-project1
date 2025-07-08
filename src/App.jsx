@@ -1,23 +1,23 @@
 "use client"
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import AuthContext from "./components/contents/AuthContext";
-import Register from "./components/Register"
-import PersonalInfo from "./components/PersonalInfo"
-import AddressSearch from "./components/AddressSearch"
-import AddressForm from "./components/AddressForm"
-import Success from "./components/Success"
-import Login from "./components/Login"
-import Dashboard from "./components/Dashboard"
-import "./App.css"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./components/contents/AuthContext";
+import Register from "./components/Register";
+import PersonalInfo from "./components/PersonalInfo";
+import AddressSearch from "./components/AddressSearch";
+import AddressForm from "./components/AddressForm";
+import Success from "./components/Success";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import "./App.css";
 
 function ProtectedRoute({ children }) {
-  const { currentUser } = useAuth()
-  return currentUser ? children : <Navigate to="/login" />
+  const { currentUser } = useAuth();
+  return currentUser ? children : <Navigate to="/login" />;
 }
 
 function PublicRoute({ children }) {
-  const { currentUser } = useAuth()
-  return !currentUser ? children : <Navigate to="/dashboard" />
+  const { currentUser } = useAuth();
+  return !currentUser ? children : <Navigate to="/dashboard" />;
 }
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
         </div>
       </Router>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
