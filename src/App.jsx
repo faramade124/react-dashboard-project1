@@ -1,6 +1,6 @@
 "use client"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import { AuthProvider, useAuth } from "/Users/Raheem/react-dashboad-project1/src/components/contents/AuthContext"
+import AuthContext from "./components/contents/AuthContext";
 import Register from "./components/Register"
 import PersonalInfo from "./components/PersonalInfo"
 import AddressSearch from "./components/AddressSearch"
