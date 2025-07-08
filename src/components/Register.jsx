@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "/Users/Raheem/react-dashboad-project1/src/components/contents/AuthContext"
+import { AuthProvider, useAuth } from "@/components/contents/AuthContext";
 import { FaApple, FaFacebook, FaGoogle, FaEye, FaEyeSlash, FaTimes, FaCheck } from "react-icons/fa"
 import "./Register.css"
 
