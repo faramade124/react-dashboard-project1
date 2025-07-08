@@ -1,10 +1,9 @@
-
-import { auth } from "react-dom";
-
+// src/components/contents/AuthContext.jsx
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import {
+  auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -12,7 +11,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
-} from "/Users/Raheem/react-dashboad-project1/src/firebase";
+} from "../../firebase"; // ← now a proper relative path
 
 const AuthContext = createContext();
 
@@ -24,34 +23,31 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
+  // wrap Firebase auth methods
+  const signup = (email, password) =>
+    createUserWithEmailAndPassword(auth, email, password);
 
-  function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
 
-  function logout() {
-    return signOut(auth);
-  }
+  const logout = () => signOut(auth);
 
-  function signInWithGoogle() {
+  const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
-  }
+  };
 
-  function signInWithFacebook() {
+  const signInWithFacebook = () => {
     const provider = new FacebookAuthProvider();
     return signInWithPopup(auth, provider);
-  }
+  };
 
+  // track user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
-
     return unsubscribe;
   }, []);
 
